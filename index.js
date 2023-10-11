@@ -33,11 +33,30 @@ app.get('/all' , async (req , res)=>{
   }
 })
 
+app.get('/getfavs' , async (req , res)=>{
+  try {
+    const query = 'SELECT * FROM favs';
+
+  connection.query(query, (err, results) => {
+    if (err) {
+      console.error('Error executing query: ' + err);
+      res.status(500).send('Error fetching data from the database');
+    } else {
+      res.json(results);
+    }
+  });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Failed to fetch data from the API' });
+  }
+})
+
+
 app.get('/search' , async (req , res)=>{
   try {
     // console.log(req.query)
     const response = await getSearchedMovie(req.query.movie)
-    res.json(response)
+    res.send(response)
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Failed to fetch data from the API' });
