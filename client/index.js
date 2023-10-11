@@ -29,6 +29,16 @@ async function updateResponse(){
         const year = document.createElement('h5')
         const image = document.createElement('img')
         const sideBox = document.createElement('div')
+
+        const addToFavBtn = document.createElement('button')
+        addToFavBtn.innerText = 'Add To Favourite'
+        addToFavBtn.classList.add('btn')
+        addToFavBtn.classList.add('btn-primary')
+        addToFavBtn.setAttribute("name" ,list[i].imdbID)
+        // console.log(addToFavBtn.getAttribute('name'))
+        addToFavBtn.addEventListener('click' ,async function(){
+            addToFavouriteFunction(addToFavBtn.name)
+        })
         title.innerText = list[i].Title
         year.innerText = list[i].Year
         image.src = list[i].Poster
@@ -36,6 +46,8 @@ async function updateResponse(){
         image.height = 150
         sideBox.appendChild(title)
         sideBox.appendChild(year)
+        sideBox.appendChild(addToFavBtn)
+
         box.appendChild(image)
         mainBox.appendChild(box)
         mainBox.appendChild(sideBox)
@@ -45,4 +57,8 @@ async function updateResponse(){
         listDiv.appendChild(mainBox)
       }
       
+}
+
+async function addToFavouriteFunction(id){
+    console.log(id)
 }

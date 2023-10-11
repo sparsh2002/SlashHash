@@ -11,4 +11,5 @@ async function getSearchedMovie(movie){
     return response.data
 }
 
+
 module.exports = {getAllMovies , getSearchedMovie}
