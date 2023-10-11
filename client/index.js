@@ -59,6 +59,48 @@ async function updateResponse(){
       
 }
 
+async function getMovieById(id){
+    const options = {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      };
+      const response = await fetch(`http://localhost:3000/getmoviebyid?i=${id}` , options)
+      
+      const res = await response.json()
+      console.log(res)
+      return res
+}
+
+
+
 async function addToFavouriteFunction(id){
-    console.log(id)
+
+    const data = await getMovieById(id)
+    console.log(data)
+    const maindata = {
+        "Title": data.Title,
+        "Year": data.Year,
+        "imdbID": data.imdbID,
+        "Type": data.Type,
+        "Poster": data.Poster
+    }
+
+    const options = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body:JSON.stringify(maindata)
+      };
+      const response = await fetch(`http://localhost:3000/addtofav` , options)
+      
+      const res = await response.json()
+      console.log(res)
+      
+      window.alert('Added to favourite')
+      
+
+      
 }

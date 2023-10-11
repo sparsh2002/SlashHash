@@ -11,5 +11,8 @@ async function getSearchedMovie(movie){
     return response.data
 }
 
-
-module.exports = {getAllMovies , getSearchedMovie}
+async function getMovieById(id){
+    const response = await axios.get(`http://www.omdbapi.com/?i=${id}&apikey=4a7ee0b3`)
+    return response.data
+}
+module.exports = {getAllMovies , getSearchedMovie, getMovieById}

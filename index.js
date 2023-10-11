@@ -1,6 +1,6 @@
 const connection = require('./connection')
 const express = require('express');
-const {getAllMovies , getSearchedMovie} = require('./apiController')
+const {getAllMovies , getSearchedMovie , getMovieById} = require('./apiController')
 const cors = require('cors');
 const app = express();
 app.use(express.json());
@@ -12,6 +12,16 @@ const port = 3000;
 app.get('/', (req, res) => {
   res.send('Hello, Express!');
 });
+
+app.get('/getmoviebyid' , async (req , res)=>{
+  try {
+    const response = await getMovieById(req.query.i)
+    res.json(response)
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Failed to fetch data from the API' });
+  }
+})
 
 app.get('/all' , async (req , res)=>{
   try {
