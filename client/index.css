@@ -3,3 +3,18 @@
     /* align-items: center; */
     margin-top: 10px;
 }
+
+.inner-box-list{
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.result-list{
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+.side-box-list{
+    padding-left: 10px;
+}
